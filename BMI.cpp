@@ -2,8 +2,11 @@
 
 main(){
 	float w,h;
-	scanf("%f%f", &w, &h);
-	printf("%.1f", w/(h*h));
+	printf("Enter weight = ");
+	scanf("%f", &w);
+	printf("Enter height = ");
+	scanf("%f",&h);
+	printf("BMI = %.1f", w/(h*h));
 
 	return 0;
 	}

@@ -2,7 +2,12 @@
 
 main(){
 	int a,b,c,min;
-	scanf("%d%d%d",&a,&b,&c);
+	printf("Enter number = ");
+	scanf("%d",&a);
+	printf("Enter number = ");
+	scanf("%d",&b);
+	printf("Enter number = ");
+	scanf("%d",&c);
 	
 	if(a<b && a<c) {min = a;}
 
@@ -11,9 +16,7 @@ main(){
 	else if(c<b && c<b){min = c;}
 
 	
-	printf("minimum = %d", min);
+	printf("Minimum = %d", min);
 
 	return 0;
 	}
-	
-	

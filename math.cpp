@@ -2,8 +2,11 @@
 
 main(){
 	float a,b;
-	scanf("%f%f", &a, &b);
-	printf("%.2f %.2f %.2f %.2f",a+b,a-b,a*b,a/b);
+	printf("Enter number = ");
+	scanf("%f", &a);
+	printf("Enter number = ");
+	scanf("%f", &b);
+	printf("Plus = %.2f  Minus = %.2f  Multiply = %.2f  Divide = %.2f",a+b,a-b,a*b,a/b);
 	
 	return 0;
 	}
