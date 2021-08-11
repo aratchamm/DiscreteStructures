@@ -1,36 +1,34 @@
 #include <stdio.h>
 
 main(){
-	int x1,y1,x2,y2,x1_n,x2_n,y1n,y2n;
-	//x11 = y1*0.01*x1;
-	//x21 = y2*0.01*x2;
-	
+	float pA,rA,pB,rB,A_n[3],B_n[3];
+	int a;
+	int x,y=0;
 	printf("Population of A = ");
-	scanf("%d", &x1);
+	scanf("%f",&pA);
 	printf("Growth rate (%%) = ");
-	scanf("%d", &y1);
+	scanf("%f",&rA);
 	printf("Population of B = ");
-	scanf("%d", &x2);
+	scanf("%f",&pB);
 	printf("Growth rate (%%) = ");
-	scanf("%d", &y2);
-	y1n = y1*0.01;
-	y2n = y2*0.01;
-	printf("year 0,  A = %d ,B = %d\n",x1,x2); 
+	scanf("%f",&rB);
 	
-	for(int i =0; i<4; i++) {
-		x1_n = (y1n*x1) + x1;
-		x2_n = (y2n*x2) + x2;
-		printf("year %d,  A = %d ,B = %d\n",i,x1_n,x2_n);
+	for(int loop=0; loop<4; loop++) {
+		for(int i=0; i<4; i++) {
+			if(i==0) {
+				A_n[i] = pA;
+				B_n[i] = pB;
+			}
+			else if(i!=0) {
+				A_n[i] = A_n[i-1]*(rA*0.01) + A_n[i-1] ;
+				B_n[i] = B_n[i-1]*(rB*0.01) + B_n[i-1] ;
+			}
+			//A_n[i] = x; 
+			//B_n[i] = y;
+			//printf("%d%d",Ay,By);
+		}
+		printf("year %d, A = %.2f B = %.2f\n",loop,A_n[loop],B_n[loop]);
+		a++;
 	}
-	
-	//printf("year 1,  A = %d ,B = %d\n",x1_n,x2_n);
-	//printf("year 2,  A = %d ,B = %d\n",x1_n,x2_n);
-	//printf("year 2,  A = %d ,B = %d\n",x1*y1*y1/10000, x2*y2*y2/10000);
-	//printf("year 3,  A = %d ,B = %d\n",x1*y1*y1*y1/1000000, x2*y2*y2*y2/1000000);
-	
-	}
-	
-	//a = (10000 x 0.3) + 10000
-	//0.3
-	
-	
+	printf("During = %d Years", a-1);
+}

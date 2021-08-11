@@ -15,5 +15,3 @@ main(){
 	
 	printf("minimum = %d",min);
 	}
-	
-	

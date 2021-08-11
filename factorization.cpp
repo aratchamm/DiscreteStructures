@@ -1,24 +1,21 @@
-#include <stdio.h>
-
+#include<stdio.h>
+#include<conio.h>
 int main(){
-	int num;
-	int i=2;
-	int a=0;
-	printf("Enter number = ");
-	scanf("%d",&num);
-	while(i<=num) {
-		if(num%i==0) {
-			printf("%d ",i);
-			a++;
-			num/=i;
-			if(a++ && i<=num) {
-				printf("x ");
-			}
-		}
-		else if(num%i!=0)i++;
-	}
-	
-	
-	
-	return 0;
-}
+ int num,x=2,y;
+ printf("enter number:");
+ scanf("%d",&num);
+ printf("Factory Result :");
+  while(num!=1){
+   while(num%x==0){
+     num=num/x;
+     printf("%d",x);
+     if(y<num) {
+      printf(" x ");
+  }
+     }
+    
+    x++;
+    }
+   
+ return 0; 
+  }
