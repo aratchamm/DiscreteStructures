@@ -13,6 +13,6 @@ main(){
 			}
 		}
 
-	printf("Many of odd number = %d ",a);
+	printf("Many of even number = %d ",a);
 	
 	}
