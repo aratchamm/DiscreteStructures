@@ -13,5 +13,5 @@ int main(){
 			min = num[i];
 		}
 	}
-		printf("min = %d, 2nd min = %d\n",min,min2);
+		printf("%d + %d = %d",min,min2,min+min2);
 }
