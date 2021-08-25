@@ -12,6 +12,11 @@ int main(){
 			}
 			min = num[i];
 		}
+		
+		if (num[i] <= min2 && num[i]!= min) {
+			min2 = num[i];
+		}
+		
 	}
 		printf("%d + %d = %d",min,min2,min+min2);
 }
