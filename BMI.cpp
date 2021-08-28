@@ -14,4 +14,4 @@ main(){
 		printf("BMI = %.1f", w/(h*h));
 	}
 	return 0;
-	}
+	} 
