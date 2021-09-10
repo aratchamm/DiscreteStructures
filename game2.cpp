@@ -38,14 +38,32 @@ void draw_bullet(int x, int y)
 	gotoxy(x, y); printf("   |   ");
 }
 
+int bullet(int a, int b) {
+
+	int i = 0;
+
+	if (i == 0) {
+		gotoxy(a, --b);
+		i = 1;
+	}
+
+	setcolor(7, 0);
+	do {
+		erase_ship(a, b); gotoxy(a, ----b); draw_bullet(a, b); Sleep(500);
+	} while (b >= 1);
+
+	if (b <= 1) {
+		erase_ship(a, b);
+	}
+
+	return 0;
+}
+
 
 int Move(int x, int y) {
 
 	int i = 1;
 	int j = 0;
-	int k = 0;
-	int* a = &x;
-	int* b = &y;
 
 	char ch = ' ';
 	do {
@@ -64,29 +82,10 @@ int Move(int x, int y) {
 		while (i == 2) {
 
 			if (j == 1) {
-
-				if (k == 0) {
-					int* a = &x;
-					int* b = &y;
-					k = 1;
-				}
-
-				else if (k == 1) {
-
-					setcolor(7, 0);
-					if (*b > 0 || *b < 30) {
-						gotoxy(*a, *b); draw_bullet(*a, -- * b); erase_ship(*a, *b);
-					}
-
-					if (*b <= 0 || *b >= 30) {
-						erase_ship(*a, *b); j = 0; k = 0;
-					}
-
-					Sleep(500);
-
-				}
-
-
+				bullet(x, y);
+				gotoxy(++x, y);
+				erase_ship(x, y);
+				j = 0;
 			}
 
 			if (x != 0)setcolor(7, 0); erase_ship(x, y); setcolor(7, 0); gotoxy(--x, y); setcolor(2, 4); draw_ship(x, y);
@@ -106,82 +105,30 @@ int Move(int x, int y) {
 
 		while (i == 3) {
 
-
 			if (j == 1) {
-
-				if (k == 0) {
-					int* a = &x;
-					int* b = &y;
-					k = 1;
-				}
-
-				else if (k == 1) {
-
-					setcolor(7, 0);
-					if (*b > 0 || *b < 30) {
-						gotoxy(*a, *b); draw_bullet(*a, -- * b); erase_ship(*a, *b);
-					}
-
-					if (*b <= 0 || *b >= 30) {
-						erase_ship(*a, *b); j = 0; k = 0;
-					}
-
-					Sleep(500);
-
-				}
+				bullet(x, y);
+				gotoxy(--x, y);
+				erase_ship(x, y);
+				j = 0;
+			}
 
 
+			if (x != 72)setcolor(7, 0); erase_ship(x, y); setcolor(7, 0); gotoxy(++x, y); setcolor(2, 4); draw_ship(x, y);
+			if (x == 72)Move(x, y);
+			if (_kbhit()) {
+				ch = _getch();
+				if (ch == 's')i = 4;
+				else if (ch == 'a')i = 2;
+				else if (ch == 'x')return 0;
+				else if (ch == ' ')j = 1;
+				fflush(stdin);
 			}
 
 			Sleep(500);
 
-			if (j == 1) {
-
-				if (k == 0) {
-					int* a = &x;
-					int* b = &y;
-					k = 1;
-				}
-
-				else if (k == 1) {
-
-					setcolor(7, 0);
-					if (*b > 0 || *b < 30) {
-						gotoxy(*a, *b); draw_bullet(*a, -- * b); erase_ship(*a, *b);
-					}
-
-					if (*b <= 0 || *b >= 30) {
-						erase_ship(*a, *b); j = 0; k = 0;
-					}
-
-					Sleep(500);
-
-				}
-				
-
-			}
-
 		}
 
 		while (i == 4) {
-
-			if (j == 1) {
-
-				int* a = &x;
-				int* b = &y;
-
-				setcolor(7, 0);
-				if (*b > 0 || *b < 30) {
-					gotoxy(*a, *b); draw_bullet(*a, --* b);
-				}
-
-				if (*b <= 0 || *b >= 30) {
-					erase_ship(*a, *b); j = 0;
-				}
-
-				Sleep(500);
-
-			}
 			setcolor(7, 0); erase_ship(x, y); setcolor(7, 0); gotoxy(x, y); setcolor(2, 4); draw_ship(x, y); i = 0;
 		}
 
