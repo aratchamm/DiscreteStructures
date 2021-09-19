@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<windows.h>
 #include<conio.h>
-#include<time.h>
+#include<time.h> 
 
 char cursor(int x, int y) {
 	HANDLE hStd = GetStdHandle(STD_OUTPUT_HANDLE);
