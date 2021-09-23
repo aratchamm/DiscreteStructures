@@ -80,6 +80,9 @@ void fill_data_to_buffer()
 }
 
 
+
+
+
 int main()
 {
 	bool play = true;
@@ -89,11 +92,11 @@ int main()
 	int yMouse = 0;
 	int xEnemy[20];
 	int yEnemy[20];
-	int random_enemy_color;
+	int random_enemy_color = 2;
 	int enemycount = 0;
 	int score = 0;
 	int color = 7;
-	
+
 
 	setConsole(screen_x, screen_y);
 	setcursor(0);
@@ -107,86 +110,135 @@ int main()
 			ReadConsoleInput(rHnd, eventBuffer, numEvents, &numEventsRead);
 
 			for (DWORD i = 0; i < numEventsRead; ++i) {
+
+
+				while (enemycount < 20) {
+					int randX = 0;
+					int randY = 0;
+					while (randX < 1 || randX > 79) {
+						randX = rand() % 100;
+					}
+					xEnemy[enemycount] = randX; randX = 0;
+					while (randY < 1 || randY > 25) {
+						randY = (rand() % 100);
+					}
+					yEnemy[enemycount] = randY; randY = 0;
+
+					draw_enemy(xEnemy[enemycount], yEnemy[enemycount]);
+					enemycount++;
+				}
+
 				if (eventBuffer[i].EventType == KEY_EVENT &&
 					eventBuffer[i].Event.KeyEvent.bKeyDown == true) {
+
+
 					if (eventBuffer[i].Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE) {
+						gotoxy(0, 0);
+						for (int loop = 0; loop <= 25; loop++) {
+							setcolor(7, 0);
+							printf("                                                                                                                       ");
+							printf("\n");
+						}
+						gotoxy(0, 0);
 						play = false;
 					}
+
 					else if (eventBuffer[i].Event.KeyEvent.wVirtualKeyCode == 'C') {
-							random_enemy_color = rand() % 10;
-							setcolor(random_enemy_color,0);
-							color = random_enemy_color;
-						
+
+						random_enemy_color = (rand() % 5) + 10;
+						setcolor(random_enemy_color, 0);
+						color = random_enemy_color;
+						gotoxy(xMouse - 2, yMouse);
+						printf("<=0=>");
+
 					}
 				}
 				else if (eventBuffer[i].EventType == MOUSE_EVENT) {
 					int posx = eventBuffer[i].Event.MouseEvent.dwMousePosition.X;
 					int posy = eventBuffer[i].Event.MouseEvent.dwMousePosition.Y;
-					if (eventBuffer[i].Event.MouseEvent.dwButtonState&FROM_LEFT_1ST_BUTTON_PRESSED) {
-							random_enemy_color = rand() % 10;
-							setcolor(random_enemy_color, 0);
-							color = random_enemy_color;
+					if (eventBuffer[i].Event.MouseEvent.dwButtonState & FROM_LEFT_1ST_BUTTON_PRESSED) {
+						random_enemy_color = (rand() % 5) + 10;
+						setcolor(random_enemy_color, 0);
+						color = random_enemy_color;
+
 					}
-					
+
 					else if (eventBuffer[i].Event.MouseEvent.dwEventFlags & MOUSE_MOVED) {
 
-
-						for (int l = 0; l < 20; l++) {
-
-							if (xEnemy[l] == xMouse - 1 || xEnemy[l] == xMouse - 2 || xEnemy[l] == xMouse || xEnemy[l] == xMouse + 1 || xEnemy[l] == xMouse + 2) {
-
-								if (yEnemy[l] == yMouse) {
-									printf(" ");
-									score++;
-									enemycount--;
-									xEnemy[l], yEnemy[l] = 0;
-								}
-
-							}
-
-
-						}
-
 						if (xMouse != posx || yMouse != posy) {
-							gotoxy(xMouse-2, yMouse);
-							printf("     ");
+							if (posx > 1 && posx < 78) {
+								gotoxy(xMouse - 2, yMouse);
+								printf("     ");
+							}
 						}
-						
-						if (posx > 1 || posx <= 50) {
-							gotoxy(posx-2, posy);
+
+
+						if (posx > 1 && posx < 78) {
+							gotoxy(posx - 2, posy);
 							setcolor(color, 0);
-							printf("<=0=>");
 							xMouse = posx;
 							yMouse = posy;
+							printf("<=0=>");
 						}
-						else printf("bbbbbbb");
-					
-					}
 
-					while (enemycount < 20) {
-
-						posx, posy = 0;
-						while (posx < 1 || posx > 79) {
-							posx = rand() % 100;
-						}
-						xEnemy[enemycount] = posx; posx = 0;
-						while (posy < 1 || posy > 25) {
-							posy = (rand() % 100);
-						}
-						yEnemy[enemycount] = posy; posy = 0;
-
-						draw_enemy(xEnemy[enemycount], yEnemy[enemycount]);
-						enemycount++;
 					}
 
 					if (score == 10) {
+						gotoxy(0, 0);
+						for (int loop = 0; loop <= 25; loop++) {
+							setcolor(7, 0);
+							printf("                                                                                                                       ");
+							printf("\n");
+						}
+						gotoxy(0, 0);
 						return 0;
 					}
 
+					for (int l = 0; l < 20; l++) {
 
+						if (xEnemy[l] == xMouse - 1 && yEnemy[l] == yMouse) {
+							score++;
+							enemycount--;
+							xEnemy[l], yEnemy[l] = 0;
+							printf(" ");
+						}
+
+
+						else if (xEnemy[l] == xMouse - 2 && yEnemy[l] == yMouse) {
+							score++;
+							enemycount--;
+							xEnemy[l], yEnemy[l] = 0;
+							printf(" ");
+						}
+
+						else if (xEnemy[l] == xMouse && yEnemy[l] == yMouse) {
+							score++;
+							enemycount--;
+							xEnemy[l], yEnemy[l] = 0;
+							printf(" ");
+						}
+
+						else if (xEnemy[l] == xMouse + 1 && yEnemy[l] == yMouse) {
+							score++;
+							enemycount--;
+							xEnemy[l], yEnemy[l] = 0;
+							printf(" ");
+						}
+
+						else if (xEnemy[l] == xMouse + 2 && yEnemy[l] == yMouse) {
+							score++;
+							enemycount--;
+							xEnemy[l], yEnemy[l] = 0;
+							printf(" ");
+						}
+
+					}
 
 				}
+
+				
 			}
+
 			delete[]eventBuffer;
 		}
 		Sleep(100);
