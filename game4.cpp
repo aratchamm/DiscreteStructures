@@ -115,18 +115,74 @@ int main()
 				while (enemycount < 20) {
 					int randX = 0;
 					int randY = 0;
-					while (randX < 1 || randX > 79) {
+					while (randX < 10 || randX >60) {
 						randX = rand() % 100;
 					}
 					xEnemy[enemycount] = randX; randX = 0;
-					while (randY < 1 || randY > 25) {
+					while (randY < 1 || randY > 20) {
 						randY = (rand() % 100);
 					}
 					yEnemy[enemycount] = randY; randY = 0;
-
+					
 					draw_enemy(xEnemy[enemycount], yEnemy[enemycount]);
 					enemycount++;
+				
 				}
+				
+				if (score == 10) {
+						gotoxy(0, 0);
+						for (int loop = 0; loop <= 25; loop++) {
+							setcolor(7, 0);
+							printf("                                                                                                                       ");
+							printf("\n");
+						}
+						gotoxy(0, 0);
+						return 0;
+					}
+
+				for (int l = 0; l < 20; l++) {
+
+						if (xEnemy[l] == xMouse - 1 && yEnemy[l] == yMouse) {
+							score++;
+							enemycount--;
+				
+							printf(" ");
+						}
+
+
+						else if (xEnemy[l] == xMouse - 2 && yEnemy[l] == yMouse) {
+						score++;
+						enemycount--;
+						xEnemy[l], yEnemy[l] = 0;
+			
+						printf(" ");
+					} 
+
+						else if (xEnemy[l] == xMouse && yEnemy[l] == yMouse) {
+						score++;
+						enemycount--;
+						xEnemy[l], yEnemy[l] = 0;
+				
+						printf(" ");
+					} 
+
+						else if (xEnemy[l] == xMouse + 1 && yEnemy[l] == yMouse) {
+						score++;
+						enemycount--;
+						xEnemy[l], yEnemy[l] = 0;
+					
+						printf(" ");
+					} 
+
+						else if (xEnemy[l] == xMouse + 2 && yEnemy[l] == yMouse) {
+						score++;
+						enemycount--;
+						xEnemy[l], yEnemy[l] = 0;
+				
+						printf(" ");
+					} 
+
+					}
 
 				if (eventBuffer[i].EventType == KEY_EVENT &&
 					eventBuffer[i].Event.KeyEvent.bKeyDown == true) {
@@ -180,63 +236,16 @@ int main()
 							yMouse = posy;
 							printf("<=0=>");
 						}
+						
+						Sleep(10);
 
 					}
 
-					if (score == 10) {
-						gotoxy(0, 0);
-						for (int loop = 0; loop <= 25; loop++) {
-							setcolor(7, 0);
-							printf("                                                                                                                       ");
-							printf("\n");
-						}
-						gotoxy(0, 0);
-						return 0;
-					}
-
-					for (int l = 0; l < 20; l++) {
-
-						if (xEnemy[l] == xMouse - 1 && yEnemy[l] == yMouse) {
-							score++;
-							enemycount--;
-							xEnemy[l], yEnemy[l] = 0;
-							printf(" ");
-						}
-
-
-						else if (xEnemy[l] == xMouse - 2 && yEnemy[l] == yMouse) {
-							score++;
-							enemycount--;
-							xEnemy[l], yEnemy[l] = 0;
-							printf(" ");
-						}
-
-						else if (xEnemy[l] == xMouse && yEnemy[l] == yMouse) {
-							score++;
-							enemycount--;
-							xEnemy[l], yEnemy[l] = 0;
-							printf(" ");
-						}
-
-						else if (xEnemy[l] == xMouse + 1 && yEnemy[l] == yMouse) {
-							score++;
-							enemycount--;
-							xEnemy[l], yEnemy[l] = 0;
-							printf(" ");
-						}
-
-						else if (xEnemy[l] == xMouse + 2 && yEnemy[l] == yMouse) {
-							score++;
-							enemycount--;
-							xEnemy[l], yEnemy[l] = 0;
-							printf(" ");
-						}
-
-					}
+					
 
 				}
 
-				
+
 			}
 
 			delete[]eventBuffer;
