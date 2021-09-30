@@ -10,7 +10,7 @@ COORD bufferSize = { screen_x,screen_y };
 SMALL_RECT windowSize = { 0,0,screen_x - 1,screen_y - 1 };
 
 char cursor(int x, int y) {
-	HANDLE hStd = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE hStd = GetStdHandle(STD_OUTPUT_HANDLE); 
 	char buf[2]; COORD c = { x,y }; DWORD num_read;
 	if (
 		!ReadConsoleOutputCharacter(hStd, (LPTSTR)buf, 1, c, (LPDWORD)&num_read))
