@@ -5,7 +5,6 @@ int main() {
 	char str[50];
 	float credits;
 	float grade;
-	
 	printf("Subject = ");
 	scanf("%s", str);
 	printf("Credits = ");
