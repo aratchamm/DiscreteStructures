@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <time.h>
 #define screen_x 80
-#define screen_y 25
+#define screen_y 25 
 HANDLE rHnd;
 HANDLE wHnd;
 DWORD fdwMode;
