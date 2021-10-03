@@ -7,7 +7,7 @@ int main() {
 	
 	struct player {
 		
-		char name[50];
+		char name[50]; 
 		int score;
 		int level;
 	};
