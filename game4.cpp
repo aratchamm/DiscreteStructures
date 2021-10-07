@@ -6,7 +6,7 @@
 HANDLE rHnd;
 HANDLE wHnd;
 DWORD fdwMode;
-COORD bufferSize = { screen_x,screen_y };
+COORD bufferSize = { screen_x,screen_y }; 
 SMALL_RECT windowSize = { 0,0,screen_x - 1,screen_y - 1 };
 
 char cursor(int x, int y) {
